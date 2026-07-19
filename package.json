@@ -11,7 +11,7 @@
     "test:smoke": "mocha tests/registration.dd.spec.js --grep @smoke --require ./hooks.js",
     "test:xlsx": "set DATA_SOURCE=xlsx&& mocha tests/registration.dd.spec.js --require ./hooks.js",
     "test:csv": "set DATA_SOURCE=csv&& mocha tests/registration.dd.spec.js --require ./hooks.js",
-    "test:ci": "set HEADLESS=true&& mocha tests/registration.dd.spec.js --require ./hooks.js --retries 2 --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=ci-report,overwrite=true,html=true,json=true"
+    "test:ci": "mocha tests/registration.dd.spec.js --require ./hooks.js --retries 2 --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=ci-report,overwrite=true,html=true,json=true"
   },
   "keywords": [],
   "author": "",
