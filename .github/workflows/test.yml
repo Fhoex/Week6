@@ -9,20 +9,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - run: npm run test:ci
+      - name: Run smoke tests
+        run: npm run test:smoke
         env:
           HEADLESS: "true"
 
-      - uses: actions/upload-artifact@v4
+      - name: Run regression tests
+        if: github.ref == 'refs/heads/main'
+        run: npm run test:regression
+        env:
+          HEADLESS: "true"
+
+      - name: Generate Mochawesome report
         if: always()
+        run: npm run test:ci
+        env:
+          HEADLESS: "true"
+
+      - name: Upload Mochawesome report
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
           path: mochawesome-report/

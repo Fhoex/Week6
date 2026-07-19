@@ -25,6 +25,14 @@ const filteredData = dataset.filter((row) =>
   row.testId.startsWith(filter)
 );
 
+const smokeTestIds = new Set([
+  "REG_VAL_001",
+  "REG_EMAIL_001",
+  "REG_MISMATCH_001",
+  "REG_LENGTH_001",
+  "REG_REQUIRED_001"
+]);
+
 describe("Registration Data-Driven Tests", function () {
   this.timeout(60000);
 
@@ -69,11 +77,12 @@ describe("Registration Data-Driven Tests", function () {
   });
 
   filteredData.forEach((row) => {
+    const tag = smokeTestIds.has(row.testId)
+      ? "@smoke"
+      : "@regression";
+
     const testTitle =
-      row.testId === "REG_VAL_001" ||
-      row.testId === "REG_EMAIL_001"
-        ? `@smoke ${row.testId} - ${row.testCase}`
-        : `${row.testId} - ${row.testCase}`;
+      `${tag} ${row.testId} - ${row.testCase}`;
 
     it(testTitle, async function () {
       await registrationPage.register(row);

@@ -9,6 +9,7 @@
     "test:headed": "set HEADLESS=false&& mocha tests/registration.dd.spec.js --require ./hooks.js",
     "test:headless": "set HEADLESS=true&& mocha tests/registration.dd.spec.js --require ./hooks.js",
     "test:smoke": "mocha tests/registration.dd.spec.js --grep @smoke --require ./hooks.js",
+    "test:regression": "mocha tests/registration.dd.spec.js --grep @regression --require ./hooks.js",
     "test:xlsx": "set DATA_SOURCE=xlsx&& mocha tests/registration.dd.spec.js --require ./hooks.js",
     "test:csv": "set DATA_SOURCE=csv&& mocha tests/registration.dd.spec.js --require ./hooks.js",
     "test:debug": "cross-env LOG_LEVEL=debug mocha tests/registration.dd.spec.js --require ./hooks.js --timeout 0",
