@@ -1,4 +1,20 @@
-const { createLogger, format, transports } = require("winston");
+const {
+  createLogger,
+  format,
+  transports
+} = require("winston");
+
+function maskSecret(str) {
+  if (!str) {
+    return str;
+  }
+
+  if (str.length <= 4) {
+    return "***";
+  }
+
+  return str.slice(0, 2) + "***" + str.slice(-2);
+}
 
 const logger = createLogger({
   level: "info",
@@ -10,8 +26,13 @@ const logger = createLogger({
   ),
   transports: [
     new transports.Console(),
-    new transports.File({ filename: "logs/test.log" })
+    new transports.File({
+      filename: "logs/test.log"
+    })
   ]
 });
 
-module.exports = logger;
+module.exports = {
+  logger,
+  maskSecret
+};

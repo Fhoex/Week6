@@ -1,6 +1,6 @@
 const { By } = require("selenium-webdriver");
 const BasePage = require("./BasePage");
-const logger = require("../utils/logger");
+const { logger, maskSecret } = require("../utils/logger");
 
 class RegistrationPage extends BasePage {
   static url =
@@ -96,6 +96,10 @@ class RegistrationPage extends BasePage {
   }
 
   async enterPassword(password) {
+    logger.info(
+      `Entering password: ${maskSecret(password)}`
+    );
+
     await this.type(
       RegistrationPage.passwordInput,
       password
@@ -103,6 +107,10 @@ class RegistrationPage extends BasePage {
   }
 
   async enterConfirmPassword(confirmPassword) {
+    logger.info(
+      `Entering confirmation password: ${maskSecret(confirmPassword)}`
+    );
+
     await this.type(
       RegistrationPage.confirmPasswordInput,
       confirmPassword
@@ -127,7 +135,6 @@ class RegistrationPage extends BasePage {
     await this.enterUsername(data.username);
     await this.enterEmail(data.email);
     await this.enterPassword(data.password);
-
     await this.enterConfirmPassword(
       data.confirmPassword
     );
