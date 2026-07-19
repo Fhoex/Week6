@@ -1,6 +1,4 @@
-const {
-  Builder
-} = require("selenium-webdriver");
+const { Builder } = require("selenium-webdriver");
 
 const chrome = require("selenium-webdriver/chrome");
 const assert = require("assert");
@@ -28,19 +26,23 @@ const filteredData = dataset.filter((row) =>
 );
 
 describe("Registration Data-Driven Tests", function () {
-  this.timeout(30000);
+  this.timeout(60000);
 
   let driver;
   let registrationPage;
 
   beforeEach(async function () {
+    this.timeout(60000);
+
     const options = new chrome.Options();
 
     if (headless) {
       options.addArguments(
         "--headless=new",
         "--window-size=1920,1080",
-        "--disable-gpu"
+        "--disable-gpu",
+        "--no-sandbox",
+        "--disable-dev-shm-usage"
       );
     }
 
@@ -55,19 +57,25 @@ describe("Registration Data-Driven Tests", function () {
   });
 
   afterEach(async function () {
+    this.timeout(60000);
+
     if (driver) {
-      await driver.quit();
+      try {
+        await driver.quit();
+      } finally {
+        driver = null;
+      }
     }
   });
 
   filteredData.forEach((row) => {
     const testTitle =
-  row.testId === "REG_VAL_001" ||
-  row.testId === "REG_EMAIL_001"
-    ? `@smoke ${row.testId} - ${row.testCase}`
-    : `${row.testId} - ${row.testCase}`;
+      row.testId === "REG_VAL_001" ||
+      row.testId === "REG_EMAIL_001"
+        ? `@smoke ${row.testId} - ${row.testCase}`
+        : `${row.testId} - ${row.testCase}`;
 
-it(testTitle, async function () {
+    it(testTitle, async function () {
       await registrationPage.register(row);
 
       if (row.expected !== "pass") {
