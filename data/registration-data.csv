@@ -1,0 +1,21 @@
+testId,testCase,firstName,lastName,email,password,confirmPassword,expected,expectedError,phone,username
+REG_VAL_001,Valid standard registration,Diego,Perez,diego.perez001@example.com,Password123!,Password123!,pass,,12345678,Perez
+REG_VAL_002,Valid hyphenated last name,Maria,Lopez-Garcia,maria.lopez002@example.com,Secure456@,Secure456@,pass,,12345678,Lopez-Garcia
+REG_VAL_003,Valid accented first name,José,Ramirez,jose.ramirez003@example.com,Clave789#,Clave789#,pass,,12345678,Ramirez
+REG_VAL_004,Valid apostrophe in last name,Anne,O'Connor,anne.oconnor004@example.com,Testing321$,Testing321$,pass,,12345678,O'Connor
+REG_VAL_005,Valid long names,Christopher,Montgomery,christopher005@example.com,LongPassword55!,LongPassword55!,pass,,12345678,Montgomery
+REG_EMAIL_001,Email missing at symbol,Carlos,Diaz,carlos.example.com,Password123!,Password123!,fail,email,12345678,Diaz
+REG_EMAIL_002,Email with multiple at symbols,Lucia,Torres,lucia@@example.com,Password123!,Password123!,fail,email,12345678,Torres
+REG_EMAIL_003,Email missing domain,Pedro,Rojas,pedro@,Password123!,Password123!,fail,email,12345678,Rojas
+REG_EMAIL_004,Email missing top level domain,Laura,Mendez,laura@example,Password123!,Password123!,fail,email,12345678,Mendez
+REG_EMAIL_005,Email missing local part,Mario,Salas,@example.com,Password123!,Password123!,fail,email,12345678,Salas
+REG_MISMATCH_001,Password confirmation mismatch,Ana,Vega,ana.vega011@example.com,Password123!,Password124!,pass,,12345678,Vega
+REG_MISMATCH_002,Password case mismatch,Luis,Castro,luis.castro012@example.com,SecurePass1!,securepass1!,pass,,12345678,Castro
+REG_MISMATCH_003,Empty password confirmation,Elena,Ruiz,elena.ruiz013@example.com,Password123!,,fail,password,12345678,Ruiz
+REG_LENGTH_001,Password below minimum length,Jorge,Soto,jorge.soto014@example.com,123,123,pass,,12345678,Soto
+REG_LENGTH_002,Password at minimum boundary,Diana,Flores,diana.flores015@example.com,12345678,12345678,pass,,12345678,Flores
+REG_REQUIRED_001,Missing first name,,Navarro,missing.firstname016@example.com,Password123!,Password123!,fail,first name,12345678,Navarro
+REG_REQUIRED_002,Missing email,Rosa,Campos,,Password123!,Password123!,fail,email,12345678,Campos
+REG_NAME_001,Apostrophe in first name,D'Angelo,Smith,dangelo.smith018@example.com,Password123!,Password123!,pass,,12345678,Smith
+REG_NAME_002,Hyphenated first name,Jean-Luc,Martin,jeanluc.martin019@example.com,Password123!,Password123!,pass,,12345678,Martin
+REG_NAME_003,Emoji in first name,Alex#,Brown,alex.brown020@example.com,Password123!,Password123!,pass,,12345678,Brown

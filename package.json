@@ -1,0 +1,29 @@
+{
+  "name": "week5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "mocha tests/registration.dd.spec.js --require ./hooks.js",
+    "test:headed": "set HEADLESS=false&& mocha tests/registration.dd.spec.js --require ./hooks.js",
+    "test:headless": "set HEADLESS=true&& mocha tests/registration.dd.spec.js --require ./hooks.js",
+    "test:smoke": "mocha tests/registration.dd.spec.js --grep @smoke --require ./hooks.js",
+    "test:xlsx": "set DATA_SOURCE=xlsx&& mocha tests/registration.dd.spec.js --require ./hooks.js",
+    "test:csv": "set DATA_SOURCE=csv&& mocha tests/registration.dd.spec.js --require ./hooks.js",
+    "test:ci": "set HEADLESS=true&& mocha tests/registration.dd.spec.js --require ./hooks.js --retries 2 --reporter mochawesome --reporter-options reportDir=mochawesome-report,reportFilename=ci-report,overwrite=true,html=true,json=true"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^6.2.2",
+    "csv-parse": "^7.0.1",
+    "dotenv": "^17.4.2",
+    "mocha": "^11.7.6",
+    "mochawesome": "^1.5.5",
+    "selenium-webdriver": "^4.45.0",
+    "winston": "^3.19.0",
+    "xlsx": "^0.18.5"
+  }
+}
