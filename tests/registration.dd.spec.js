@@ -31,7 +31,7 @@ describe("Registration Data-Driven Tests", function () {
   let driver;
   let registrationPage;
 
-  beforeEach(async function () {
+  before(async function () {
     this.timeout(60000);
 
     const options = new chrome.Options();
@@ -52,19 +52,19 @@ describe("Registration Data-Driven Tests", function () {
       .build();
 
     registrationPage = new RegistrationPage(driver);
+  });
+
+  beforeEach(async function () {
+    this.timeout(60000);
 
     await registrationPage.openRegistrationPage();
   });
 
-  afterEach(async function () {
+  after(async function () {
     this.timeout(60000);
 
     if (driver) {
-      try {
-        await driver.quit();
-      } finally {
-        driver = null;
-      }
+      await driver.quit();
     }
   });
 
