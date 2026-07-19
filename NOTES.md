@@ -1,0 +1,1 @@
+Running the registration tests with `npm run test:debug` helped me follow the complete flow of each test case, from the start of registration to the form submission and final result. The log also showed that the passwords were masked while still allowing me to confirm that the correct values were being entered.
